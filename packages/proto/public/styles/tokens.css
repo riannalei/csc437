@@ -1,0 +1,61 @@
+/* Design Tokens - CSS Custom Properties */
+
+:root {
+  /* ===== Color Palette ===== */
+  
+  /* Primary Colors */
+  --color-primary: rgb(33 150 154);       /* Teal - main brand color */
+  --color-primary-light: rgb(76 187 191); /* Light teal */
+  --color-primary-dark: rgb(23 105 108);  /* Dark teal */
+  
+  /* Accent Colors */
+  --color-accent: rgb(255 107 85);        /* Coral - attention/CTAs */
+  --color-accent-light: rgb(255 142 120); /* Light coral */
+  
+  /* Neutral Colors */
+  --color-neutral-100: rgb(250 249 246);  /* Very light cream */
+  --color-neutral-200: rgb(238 237 231);  /* Light cream */
+  --color-neutral-300: rgb(204 204 196);  /* Medium gray */
+  --color-neutral-700: rgb(71 71 71);     /* Dark gray */
+  --color-neutral-900: rgb(34 34 34);     /* Almost black */
+  
+  /* Semantic Colors - Text */
+  --color-text: var(--color-neutral-900);
+  --color-text-muted: var(--color-neutral-700);
+  --color-text-inverted: var(--color-neutral-100);
+  
+  /* Semantic Colors - Backgrounds */
+  --color-background-page: var(--color-neutral-100);
+  --color-background-header: var(--color-primary);
+  --color-background-section: rgb(255 255 255);
+  --color-background-footer: var(--color-neutral-200);
+  
+  /* Semantic Colors - Interactive */
+  --color-link: var(--color-primary-dark);
+  --color-link-hover: var(--color-accent);
+  --color-link-inverted: var(--color-neutral-100);
+  --color-link-inverted-hover: var(--color-accent-light);
+  
+  /* Semantic Colors - Borders */
+  --color-border: var(--color-neutral-300);
+  --color-border-accent: var(--color-primary-light);
+  
+  /* ===== Typography ===== */
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-heading: var(--font-family-base);
+  
+  /* ===== Spacing ===== */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+  
+  /* ===== Border ===== */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-width: 1px;
+  --border-width-thick: 2px;
+}
+
