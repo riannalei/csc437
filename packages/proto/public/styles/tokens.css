@@ -78,5 +78,14 @@
   --border-radius-md: 0.5rem;
   --border-width: 1px;
   --border-width-thick: 2px;
+  
+  /* ===== Layout ===== */
+  --max-width-content: 1200px;
+  --max-width-wide: 1400px;
+  
+  /* Grid Columns */
+  --grid-columns-mobile: 4;
+  --grid-columns-tablet: 8;
+  --grid-columns-desktop: 12;
 }
 

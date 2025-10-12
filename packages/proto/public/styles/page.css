@@ -237,3 +237,134 @@ svg.icon {
   margin-right: var(--spacing-xs);
 }
 
+/* ===== Layout ===== */
+
+/* Header Layout with Flexbox */
+body > header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+body > header > div:first-child {
+  flex: 1;
+}
+
+/* Page Grid Container */
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+/* Section Grid - Cards Layout */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg);
+}
+
+/* Grid items should not have margin-bottom */
+.grid-container > section {
+  margin-bottom: 0;
+}
+
+/* Individual sections that should align */
+main > section,
+body > section {
+  padding: var(--spacing-lg);
+}
+
+/* ===== Responsive Design ===== */
+
+/* Mobile: Single column (4-grid) */
+@media (max-width: 640px) {
+  body > header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  header h1 {
+    font-size: var(--font-size-3xl);
+  }
+  
+  main,
+  article,
+  body > section {
+    padding: var(--spacing-md);
+  }
+  
+  .grid-container {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+  }
+  
+  section {
+    padding: var(--spacing-md);
+  }
+  
+  .page-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+  }
+}
+
+/* Tablet: Two columns (8-grid) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  header h1 {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+  }
+  
+  .page-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+/* Desktop: 12-grid (default) */
+@media (min-width: 1025px) {
+  .page-grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+  
+  /* Two-column layout helper */
+  .col-6 {
+    grid-column: span 6;
+  }
+  
+  .col-4 {
+    grid-column: span 4;
+  }
+  
+  .col-3 {
+    grid-column: span 3;
+  }
+}
+
+/* Large Desktop: Enhanced spacing */
+@media (min-width: 1440px) {
+  main,
+  article,
+  body > section {
+    max-width: 1400px;
+  }
+  
+  .page-grid {
+    max-width: 1400px;
+  }
+}
+
