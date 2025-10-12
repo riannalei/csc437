@@ -4,7 +4,7 @@
   "private": true,
   "main": "public/index.html",
   "scripts": {
-    "start": "http-server public -p 8080"
+    "start": "http-server public -p 3000"
   },
   "dependencies": {
     "http-server": "^14.1.1"
