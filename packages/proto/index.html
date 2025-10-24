@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Travel Planner — Index</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/reset.css" />
+  <link rel="stylesheet" href="/styles/tokens.css" />
+  <link rel="stylesheet" href="/styles/page.css" />
+  <style>
+    /* Inline test styles */
+    body.dark-mode {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+    }
+    body.dark-mode * {
+      background-color: #333333 !important;
+      color: #ffffff !important;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Travel Planner</h1>
+    <p>Root concept: <strong>Traveler</strong></p>
+  </div>
+  <label>
+    <input type="checkbox" autocomplete="off" />
+    Dark mode
+  </label>
+  <button onclick="testDarkMode()">Test Toggle</button>
+</header>
+
+<main>
+  <travel-section
+    icon="location"
+    section-title="Destinations"
+    section-id="destinations"
+  >
+    <ul>
+      <li><a href="destination/tokyo.html">Tokyo</a></li>
+    </ul>
+  </travel-section>
+
+  <travel-section
+    icon="plane"
+    section-title="Flights"
+    section-id="flights"
+  >
+    <ul>
+      <li><a href="flight/ana-united-nyc-nrt-2025-12-20.html">NYC → NRT (codeshare)</a></li>
+    </ul>
+  </travel-section>
+
+  <travel-section
+    icon="traveler"
+    section-title="Traveler"
+    section-id="traveler"
+  >
+    <ul>
+      <li><a href="traveler/rianna.html">Rianna</a></li>
+    </ul>
+  </travel-section>
+</main>
+
+<div class="grid-container">
+  <travel-section
+    icon="plane"
+    section-title="Airlines"
+    section-id="airlines"
+  >
+    <ul>
+      <li><a href="airline/ana.html">All Nippon Airways (ANA)</a></li>
+      <li><a href="airline/united.html">United Airlines</a></li>
+    </ul>
+  </travel-section>
+
+  <travel-section
+    icon="bed"
+    section-title="Accommodations"
+    section-id="stays"
+  >
+    <ul>
+      <li><a href="accommodation/shinjuku-ryokan.html">Shinjuku Ryokan (Tokyo)</a></li>
+      <li><a href="accommodation/kyoto-inn.html">Kyoto Inn</a></li>
+    </ul>
+  </travel-section>
+
+  <travel-section
+    icon="activity"
+    section-title="Activities"
+    section-id="things"
+  >
+    <ul>
+      <li><a href="activity/tsukiji-food-tour.html">Tsukiji Food Tour</a></li>
+      <li><a href="activity/fushimi-inari-hike.html">Fushimi Inari Hike</a></li>
+    </ul>
+  </travel-section>
+
+  <travel-section
+    icon="wallet"
+    section-title="Finance"
+    section-id="money"
+  >
+    <ul>
+      <li><a href="finance/credit-card-rewards.html">Credit Card / Rewards</a></li>
+      <li><a href="finance/budget.html">Budget</a></li>
+    </ul>
+  </travel-section>
+</div>
+
+<footer>
+  <small>© 2025 Travel Planner (Prototype)</small>
+</footer>
+
+<script type="module">
+  import { define } from "@calpoly/mustang";
+  import { TravelSectionElement } from "/src/travel-section.js";
+
+  define({
+    "travel-section": TravelSectionElement
+  });
+</script>
+
+<script>
+// Simple dark mode test
+console.log('Script loaded');
+
+// Test function
+function testDarkMode() {
+  console.log('Testing dark mode...');
+  document.body.classList.toggle('dark-mode');
+  console.log('Body classes:', document.body.className);
+}
+
+// Wait for DOM to load
+window.addEventListener('load', function() {
+  console.log('Window loaded');
+  
+  const checkbox = document.querySelector('input[type="checkbox"]');
+  console.log('Checkbox:', checkbox);
+  
+  if (checkbox) {
+    checkbox.addEventListener('change', function() {
+      console.log('Checkbox changed to:', this.checked);
+      if (this.checked) {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+      }
+      console.log('Body classes now:', document.body.className);
+    });
+  }
+});
+</script>
+</body>
+</html>
+
