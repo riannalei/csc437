@@ -89,3 +89,41 @@
   --grid-columns-desktop: 12;
 }
 
+/* ===== Dark Mode Overrides ===== */
+
+body.dark-mode {
+  /* Invert background and text colors */
+  --color-background-page: rgb(34 34 34);        /* Dark background */
+  --color-text: rgb(250 249 246);               /* Light text */
+  --color-text-muted: rgb(204 204 196);         /* Muted light text */
+  
+  /* Invert section backgrounds */
+  --color-background-section: rgb(71 71 71);    /* Dark gray sections */
+  --color-background-footer: rgb(51 51 51);     /* Darker footer */
+  
+  /* Adjust borders for dark mode */
+  --color-border: rgb(102 102 102);             /* Lighter borders for visibility */
+  --color-border-accent: rgb(76 187 191);       /* Keep accent borders visible */
+  
+  /* Keep header colors but adjust for contrast */
+  --color-background-header: var(--color-primary-dark);
+  
+  /* Adjust link colors for dark mode */
+  --color-link: rgb(76 187 191);                /* Light teal for links */
+  --color-link-hover: var(--color-accent-light); /* Light coral for hover */
+  
+  /* Keep accent colors but ensure they work on dark backgrounds */
+  --color-accent: rgb(255 142 120);             /* Slightly lighter coral */
+}
+
+/* Temporary debug style to make dark mode very obvious */
+body.dark-mode {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode * {
+  background-color: #333333 !important;
+  color: #ffffff !important;
+}
+
