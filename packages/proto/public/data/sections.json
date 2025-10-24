@@ -1,0 +1,99 @@
+{
+  "mainSections": [
+    {
+      "icon": "location",
+      "sectionTitle": "Destinations",
+      "sectionId": "destinations",
+      "items": [
+        {
+          "text": "Tokyo",
+          "href": "destination/tokyo.html"
+        }
+      ]
+    },
+    {
+      "icon": "plane",
+      "sectionTitle": "Flights",
+      "sectionId": "flights",
+      "items": [
+        {
+          "text": "NYC → NRT (codeshare)",
+          "href": "flight/ana-united-nyc-nrt-2025-12-20.html"
+        }
+      ]
+    },
+    {
+      "icon": "traveler",
+      "sectionTitle": "Traveler",
+      "sectionId": "traveler",
+      "items": [
+        {
+          "text": "Rianna",
+          "href": "traveler/rianna.html"
+        }
+      ]
+    }
+  ],
+  "gridSections": [
+    {
+      "icon": "plane",
+      "sectionTitle": "Airlines",
+      "sectionId": "airlines",
+      "items": [
+        {
+          "text": "All Nippon Airways (ANA)",
+          "href": "airline/ana.html"
+        },
+        {
+          "text": "United Airlines",
+          "href": "airline/united.html"
+        }
+      ]
+    },
+    {
+      "icon": "bed",
+      "sectionTitle": "Accommodations",
+      "sectionId": "stays",
+      "items": [
+        {
+          "text": "Shinjuku Ryokan (Tokyo)",
+          "href": "accommodation/shinjuku-ryokan.html"
+        },
+        {
+          "text": "Kyoto Inn",
+          "href": "accommodation/kyoto-inn.html"
+        }
+      ]
+    },
+    {
+      "icon": "activity",
+      "sectionTitle": "Activities",
+      "sectionId": "things",
+      "items": [
+        {
+          "text": "Tsukiji Food Tour",
+          "href": "activity/tsukiji-food-tour.html"
+        },
+        {
+          "text": "Fushimi Inari Hike",
+          "href": "activity/fushimi-inari-hike.html"
+        }
+      ]
+    },
+    {
+      "icon": "wallet",
+      "sectionTitle": "Finance",
+      "sectionId": "money",
+      "items": [
+        {
+          "text": "Credit Card / Rewards",
+          "href": "finance/credit-card-rewards.html"
+        },
+        {
+          "text": "Budget",
+          "href": "finance/budget.html"
+        }
+      ]
+    }
+  ]
+}
