@@ -1,6 +1,7 @@
 // src/index.ts
 import express, { Request, Response } from "express";
 import { connect } from "./services/mongo";
+import auth, { authenticateUser } from "./routes/auth";
 import travelers from "./routes/travelers";
 
 const app = express();
@@ -16,7 +17,8 @@ app.get("/hello", (req: Request, res: Response) => {
   res.send("Hello, World");
 });
 
-app.use("/api/travelers", travelers);
+app.use("/auth", auth);
+app.use("/api/travelers", authenticateUser, travelers);
 
 connect("blazing"); // use your own db name here
 

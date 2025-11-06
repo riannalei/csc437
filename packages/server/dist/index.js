@@ -23,6 +23,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var import_express = __toESM(require("express"));
 var import_mongo = require("./services/mongo");
+var import_auth = __toESM(require("./routes/auth"));
 var import_travelers = __toESM(require("./routes/travelers"));
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
@@ -32,7 +33,8 @@ app.use(import_express.default.json());
 app.get("/hello", (req, res) => {
   res.send("Hello, World");
 });
-app.use("/api/travelers", import_travelers.default);
+app.use("/auth", import_auth.default);
+app.use("/api/travelers", import_auth.authenticateUser, import_travelers.default);
 (0, import_mongo.connect)("blazing");
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

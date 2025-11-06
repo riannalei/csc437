@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Login — Travel Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/reset.css" />
+  <link rel="stylesheet" href="/styles/tokens.css" />
+  <link rel="stylesheet" href="/styles/page.css" />
+  <script type="module">
+    import { define, Auth } from "@calpoly/mustang";
+    import { LoginFormElement } from "/src/auth/login-form";
+
+    define({
+      "mu-auth": Auth.Provider,
+      "login-form": LoginFormElement
+    });
+  </script>
+</head>
+<body class="page">
+  <mu-auth>
+    <header>
+      <h1>Travel Planner</h1>
+      <p>User Login</p>
+    </header>
+    <main class="card">
+      <login-form api="/auth/login">
+        <label>
+          <span>Username:</span>
+          <input name="username" autocomplete="off" required />
+        </label>
+        <label>
+          <span>Password:</span>
+          <input type="password" name="password" required />
+        </label>
+        <button slot="button" type="submit">Login</button>
+      </login-form>
+    </main>
+    <p>Or did you want to <a href="newuser.html">Sign up as a new user</a>?</p>
+  </mu-auth>
+</body>
+</html>
+

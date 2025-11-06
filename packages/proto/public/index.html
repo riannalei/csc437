@@ -23,17 +23,20 @@
   </style>
 </head>
 <body>
-<header>
-  <div>
-    <h1>Travel Planner</h1>
-    <p>Root concept: <strong>Traveler</strong></p>
-  </div>
-  <label>
-    <input type="checkbox" autocomplete="off" />
-    Dark mode
-  </label>
-  <button onclick="testDarkMode()">Test Toggle</button>
-</header>
+<mu-auth provides="blazing:auth">
+  <header class="main-header">
+    <div class="header-content">
+      <div class="header-title">
+        <h1>Travel Planner</h1>
+        <p>Plan your perfect journey</p>
+      </div>
+      <nav class="header-nav">
+        <span id="auth-status" class="auth-status">
+          <a href="/login.html" class="btn-signin">Sign In</a>
+        </span>
+      </nav>
+    </div>
+  </header>
 
 <main>
   <section aria-labelledby="destinations">
@@ -127,41 +130,110 @@
   </section>
 </div>
 
-<footer>
-  <small>© 2025 Travel Planner (Prototype)</small>
-</footer>
+  <footer>
+    <small>© 2025 Travel Planner (Prototype)</small>
+  </footer>
+</mu-auth>
 
-<script>
-// Simple dark mode test
-console.log('Script loaded');
+<script type="module">
+  import { define, Auth } from "@calpoly/mustang";
+  import { TravelSectionElement } from "/src/travel-section.js";
+  import { TravelPlannerElement } from "/src/travel-planner.js";
 
-// Test function
-function testDarkMode() {
-  console.log('Testing dark mode...');
-  document.body.classList.toggle('dark-mode');
-  console.log('Body classes:', document.body.className);
-}
+  define({
+    "travel-section": TravelSectionElement,
+    "travel-planner": TravelPlannerElement,
+    "mu-auth": Auth.Provider
+  });
 
-// Wait for DOM to load
-window.addEventListener('load', function() {
-  console.log('Window loaded');
-  
-  const checkbox = document.querySelector('input[type="checkbox"]');
-  console.log('Checkbox:', checkbox);
-  
-  if (checkbox) {
-    checkbox.addEventListener('change', function() {
-      console.log('Checkbox changed to:', this.checked);
-      if (this.checked) {
-        document.body.classList.add('dark-mode');
-      } else {
-        document.body.classList.remove('dark-mode');
+  // Auth status update
+  const authStatus = document.getElementById("auth-status");
+  if (authStatus) {
+    document.addEventListener("auth:message", (e: any) => {
+      const [action, data] = e.detail;
+      if (action === "auth/signin") {
+        authStatus.innerHTML = `
+          <span class="user-greeting">Welcome!</span>
+          <button onclick="signOut()" class="btn-signout">Sign Out</button>
+        `;
+      } else if (action === "auth/signout") {
+        authStatus.innerHTML = `<a href="/login.html" class="btn-signin">Sign In</a>`;
       }
-      console.log('Body classes now:', document.body.className);
     });
   }
-});
+
+  function signOut() {
+    document.dispatchEvent(new CustomEvent("auth:message", {
+      bubbles: true,
+      composed: true,
+      detail: ["auth/signout"]
+    }));
+    window.location.href = "/login.html";
+  }
+  (window as any).signOut = signOut;
 </script>
+
+<style>
+  .main-header {
+    background: linear-gradient(135deg, var(--color-primary, #21969a) 0%, var(--color-primary-dark, #17696c) 100%);
+    color: white;
+    padding: var(--spacing-xl, 2rem) var(--spacing-lg, 1.5rem);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+  }
+  .header-title h1 {
+    color: white;
+    margin: 0 0 var(--spacing-xs, 0.25rem) 0;
+    font-size: var(--font-size-3xl, 1.875rem);
+  }
+  .header-title p {
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+    font-size: var(--font-size-base, 1rem);
+  }
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md, 1rem);
+  }
+  .auth-status {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md, 1rem);
+  }
+  .btn-signin, .btn-signout {
+    padding: var(--spacing-sm, 0.5rem) var(--spacing-lg, 1.5rem);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius-md, 8px);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: var(--font-size-sm, 0.875rem);
+  }
+  .btn-signin:hover, .btn-signout:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+  }
+  .user-greeting {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+  }
+  main {
+    padding-top: var(--spacing-xxl, 3rem);
+  }
+</style>
 </body>
 </html>
 
