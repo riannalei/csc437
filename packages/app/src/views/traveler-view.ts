@@ -75,9 +75,14 @@ export class TravelerViewElement extends View<Model, Msg> {
             ? html`<img src=${profile.avatar} alt=${profile.name} class="avatar" />`
             : html`<div class="avatar-placeholder">${profile.name.charAt(0)}</div>`}
           <div class="profile-info">
-            <h1>${profile.name}</h1>
-            ${profile.nickname ? html`<p class="nickname">${profile.nickname}</p>` : ""}
-            <p class="home">📍 ${profile.home}</p>
+            <div class="profile-title-row">
+              <div>
+                <h1>${profile.name}</h1>
+                ${profile.nickname ? html`<p class="nickname">${profile.nickname}</p>` : ""}
+                <p class="home">📍 ${profile.home}</p>
+              </div>
+              <a href="/app/traveler/${this.userid}/edit" class="edit-button">Edit</a>
+            </div>
           </div>
         </header>
 
@@ -131,9 +136,29 @@ export class TravelerViewElement extends View<Model, Msg> {
       font-weight: bold;
       border: 4px solid var(--color-primary-dark, #17696c);
     }
+    .profile-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 100%;
+    }
     .profile-info h1 {
       margin: 0 0 var(--spacing-sm) 0;
       font-size: var(--font-size-3xl, 1.875rem);
+    }
+    .edit-button {
+      padding: var(--spacing-sm) var(--spacing-lg);
+      background: var(--color-primary, #21969a);
+      color: white;
+      text-decoration: none;
+      border-radius: var(--border-radius-md, 8px);
+      font-weight: 600;
+      font-size: var(--font-size-sm, 0.875rem);
+      transition: background-color 0.2s;
+      white-space: nowrap;
+    }
+    .edit-button:hover {
+      background: var(--color-primary-dark, #17696c);
     }
     .nickname {
       font-size: var(--font-size-xl, 1.25rem);

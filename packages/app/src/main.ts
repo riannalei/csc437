@@ -9,6 +9,7 @@ import { html } from "lit";
 import { HeaderElement } from "./components/blazing-header";
 import { HomeViewElement } from "./views/home-view";
 import { PlaceholderViewElement } from "./views/placeholder-view";
+import { TravelerEditElement } from "./views/traveler-edit";
 import { TravelerViewElement } from "./views/traveler-view";
 import { Msg } from "./messages";
 import { Model, init } from "./model";
@@ -25,6 +26,12 @@ const routes = [
     path: "/app/flight/:id",
     view: (params: Switch.Params) => html`
       <placeholder-view type="flight" item-id=${params.id}></placeholder-view>
+    `
+  },
+  {
+    path: "/app/traveler/:id/edit",
+    view: (params: Switch.Params) => html`
+      <traveler-edit user-id=${params.id}></traveler-edit>
     `
   },
   {
@@ -80,6 +87,7 @@ define({
   "blazing-header": HeaderElement,
   "home-view": HomeViewElement,
   "traveler-view": TravelerViewElement,
+  "traveler-edit": TravelerEditElement,
   "placeholder-view": PlaceholderViewElement,
   "mu-switch": class AppSwitch extends Switch.Element {
     constructor() {

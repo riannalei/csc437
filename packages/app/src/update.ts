@@ -20,6 +20,28 @@ function requestProfile(
     });
 }
 
+function saveProfile(
+  payload: { userid: string; profile: Traveler },
+  user: Auth.User
+): Promise<Traveler> {
+  return fetch(`/api/travelers/${payload.userid}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      ...Auth.headers(user)
+    },
+    body: JSON.stringify(payload.profile)
+  })
+    .then((response: Response) => {
+      if (response.status === 200) return response.json();
+      throw new Error(`Failed to save profile for ${payload.userid}`);
+    })
+    .then((json: unknown) => {
+      if (json) return json as Traveler;
+      throw new Error("No JSON in API response");
+    });
+}
+
 export default function update(
   message: Msg,
   model: Model,
@@ -50,8 +72,22 @@ export default function update(
       return { ...model, profile };
     }
     case "profile/save": {
-      const { profile } = message[1];
-      return { ...model, profile };
+      const { userid, profile } = message[1];
+      const { onSuccess, onFailure } = message[2] || {};
+      return [
+        model,
+        saveProfile(message[1], user)
+          .then((savedProfile) => [
+            "profile/load",
+            { userid, profile: savedProfile }
+          ] as Msg)
+          .then(() => {
+            if (onSuccess) onSuccess();
+          })
+          .catch((error: Error) => {
+            if (onFailure) onFailure(error);
+          })
+      ];
     }
     default: {
       const unhandled: never = message[0];
