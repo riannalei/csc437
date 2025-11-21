@@ -22,6 +22,21 @@ app.get("/hello", (req: Request, res: Response) => {
 app.use("/auth", auth);
 app.use("/api/travelers", authenticateUser, travelers);
 
+// Serve login.html and newuser.html explicitly
+app.get("/login.html", (req: Request, res: Response) => {
+  const loginHtml = path.resolve(staticDir, "login.html");
+  fs.readFile(loginHtml, { encoding: "utf8" })
+    .then((html) => res.send(html))
+    .catch(() => res.status(404).send("Login page not found"));
+});
+
+app.get("/newuser.html", (req: Request, res: Response) => {
+  const newuserHtml = path.resolve(staticDir, "newuser.html");
+  fs.readFile(newuserHtml, { encoding: "utf8" })
+    .then((html) => res.send(html))
+    .catch(() => res.status(404).send("Signup page not found"));
+});
+
 // SPA Routes: /app/...
 app.use("/app", (req: Request, res: Response) => {
   const indexHtml = path.resolve(staticDir, "index.html");
