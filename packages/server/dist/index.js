@@ -37,6 +37,14 @@ app.get("/hello", (req, res) => {
 });
 app.use("/auth", import_auth.default);
 app.use("/api/travelers", import_auth.authenticateUser, import_travelers.default);
+app.get("/login.html", (req, res) => {
+  const loginHtml = import_path.default.resolve(staticDir, "login.html");
+  import_promises.default.readFile(loginHtml, { encoding: "utf8" }).then((html) => res.send(html)).catch(() => res.status(404).send("Login page not found"));
+});
+app.get("/newuser.html", (req, res) => {
+  const newuserHtml = import_path.default.resolve(staticDir, "newuser.html");
+  import_promises.default.readFile(newuserHtml, { encoding: "utf8" }).then((html) => res.send(html)).catch(() => res.status(404).send("Signup page not found"));
+});
 app.use("/app", (req, res) => {
   const indexHtml = import_path.default.resolve(staticDir, "index.html");
   import_promises.default.readFile(indexHtml, { encoding: "utf8" }).then(
