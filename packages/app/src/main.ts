@@ -2,12 +2,17 @@ import {
   Auth,
   define,
   History,
+  Store,
   Switch
 } from "@calpoly/mustang";
 import { html } from "lit";
 import { HeaderElement } from "./components/blazing-header";
 import { HomeViewElement } from "./views/home-view";
 import { PlaceholderViewElement } from "./views/placeholder-view";
+import { TravelerViewElement } from "./views/traveler-view";
+import { Msg } from "./messages";
+import { Model, init } from "./model";
+import update from "./update";
 
 const routes = [
   {
@@ -25,7 +30,7 @@ const routes = [
   {
     path: "/app/traveler/:id",
     view: (params: Switch.Params) => html`
-      <placeholder-view type="traveler" item-id=${params.id}></placeholder-view>
+      <traveler-view user-id=${params.id}></traveler-view>
     `
   },
   {
@@ -67,8 +72,14 @@ const routes = [
 define({
   "mu-auth": Auth.Provider,
   "mu-history": History.Provider,
+  "mu-store": class AppStore extends Store.Provider<Model, Msg> {
+    constructor() {
+      super(update, init, "blazing:auth");
+    }
+  },
   "blazing-header": HeaderElement,
   "home-view": HomeViewElement,
+  "traveler-view": TravelerViewElement,
   "placeholder-view": PlaceholderViewElement,
   "mu-switch": class AppSwitch extends Switch.Element {
     constructor() {

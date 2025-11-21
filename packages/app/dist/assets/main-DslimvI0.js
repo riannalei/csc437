@@ -1,4 +1,4 @@
-import{i as p,x as a,a as h,r as m,n as f,d as x,_ as w,h as k,b as $}from"./state-C2F6c-XN.js";var A=Object.defineProperty,b=(e,t,r,d)=>{for(var i=void 0,n=e.length-1,s;n>=0;n--)(s=e[n])&&(i=s(t,r,i)||i);return i&&A(t,r,i),i};const g=class g extends p{constructor(){super(...arguments),this.authenticated=!1,this.darkMode=!1,this.handleAuthMessage=t=>{const r=t,[d]=r.detail;(d==="auth/signin"||d==="auth/signout")&&this.updateAuthStatus()}}connectedCallback(){super.connectedCallback(),document.addEventListener("auth:message",this.handleAuthMessage),this.updateAuthStatus(),this.checkDarkMode()}disconnectedCallback(){super.disconnectedCallback(),document.removeEventListener("auth:message",this.handleAuthMessage)}updateAuthStatus(){const t=localStorage.getItem("blazing:auth");this.authenticated=!!t,this.requestUpdate()}checkDarkMode(){this.darkMode=document.body.classList.contains("dark-mode")}toggleDarkMode(){this.darkMode=!this.darkMode,this.darkMode?document.body.classList.add("dark-mode"):document.body.classList.remove("dark-mode")}signOut(){document.dispatchEvent(new CustomEvent("auth:message",{bubbles:!0,composed:!0,detail:["auth/signout"]})),window.location.href="/login.html"}render(){return a`
+import{i as g,x as t,a as p,r as x,n as u,V as $,b as y,d as z,_ as A,s as C,h as M}from"./state-C5e8AMb5.js";var P=Object.defineProperty,w=(a,e,r,n)=>{for(var i=void 0,s=a.length-1,o;s>=0;s--)(o=a[s])&&(i=o(e,r,i)||i);return i&&P(e,r,i),i};const v=class v extends g{constructor(){super(...arguments),this.authenticated=!1,this.darkMode=!1,this.handleAuthMessage=e=>{const r=e,[n]=r.detail;(n==="auth/signin"||n==="auth/signout")&&this.updateAuthStatus()}}connectedCallback(){super.connectedCallback(),document.addEventListener("auth:message",this.handleAuthMessage),this.updateAuthStatus(),this.checkDarkMode()}disconnectedCallback(){super.disconnectedCallback(),document.removeEventListener("auth:message",this.handleAuthMessage)}updateAuthStatus(){const e=localStorage.getItem("blazing:auth");this.authenticated=!!e,this.requestUpdate()}checkDarkMode(){this.darkMode=document.body.classList.contains("dark-mode")}toggleDarkMode(){this.darkMode=!this.darkMode,this.darkMode?document.body.classList.add("dark-mode"):document.body.classList.remove("dark-mode")}signOut(){document.dispatchEvent(new CustomEvent("auth:message",{bubbles:!0,composed:!0,detail:["auth/signout"]})),window.location.href="/login.html"}render(){return t`
       <header class="main-header">
         <div class="header-content">
           <div class="header-title">
@@ -15,17 +15,17 @@ import{i as p,x as a,a as h,r as m,n as f,d as x,_ as w,h as k,b as $}from"./sta
               Dark mode
             </label>
             <span class="auth-status">
-              ${this.authenticated?a`
+              ${this.authenticated?t`
                     <span class="user-greeting">Welcome!</span>
                     <button @click=${this.signOut} class="btn-signout">Sign Out</button>
-                  `:a`
+                  `:t`
                     <a href="/login.html" class="btn-signin">Sign In</a>
                   `}
             </span>
           </nav>
         </div>
       </header>
-    `}};g.styles=h`
+    `}};v.styles=p`
     .main-header {
       background: linear-gradient(135deg, var(--color-primary, #21969a) 0%, var(--color-primary-dark, #17696c) 100%);
       color: white;
@@ -93,7 +93,7 @@ import{i as p,x as a,a as h,r as m,n as f,d as x,_ as w,h as k,b as $}from"./sta
     .dark-mode-toggle input[type="checkbox"] {
       cursor: pointer;
     }
-  `;let o=g;b([m()],o.prototype,"authenticated");b([m()],o.prototype,"darkMode");const v=class v extends p{render(){return a`
+  `;let l=v;w([x()],l.prototype,"authenticated");w([x()],l.prototype,"darkMode");const m=class m extends g{render(){return t`
       <main>
         <section aria-labelledby="destinations">
           <h2 id="destinations">
@@ -189,7 +189,7 @@ import{i as p,x as a,a as h,r as m,n as f,d as x,_ as w,h as k,b as $}from"./sta
       <footer>
         <small>© 2025 Travel Planner</small>
       </footer>
-    `}};v.styles=h`
+    `}};m.styles=p`
     main {
       padding-top: var(--spacing-xxl, 3rem);
       max-width: 1200px;
@@ -237,14 +237,14 @@ import{i as p,x as a,a as h,r as m,n as f,d as x,_ as w,h as k,b as $}from"./sta
       padding: var(--spacing-xl);
       margin-top: var(--spacing-xxl);
     }
-  `;let c=v;var M=Object.defineProperty,y=(e,t,r,d)=>{for(var i=void 0,n=e.length-1,s;n>=0;n--)(s=e[n])&&(i=s(t,r,i)||i);return i&&M(t,r,i),i};const u=class u extends p{render(){return a`
+  `;let h=m;var j=Object.defineProperty,k=(a,e,r,n)=>{for(var i=void 0,s=a.length-1,o;s>=0;s--)(o=a[s])&&(i=o(e,r,i)||i);return i&&j(e,r,i),i};const f=class f extends g{render(){return t`
       <main class="placeholder-view">
         <h1>${this.type?this.type.charAt(0).toUpperCase()+this.type.slice(1):"Page"} View</h1>
-        ${this.itemId?a`<p>ID: ${this.itemId}</p>`:""}
+        ${this.itemId?t`<p>ID: ${this.itemId}</p>`:""}
         <p>This view is coming soon!</p>
         <a href="/app">← Back to Home</a>
       </main>
-    `}};u.styles=h`
+    `}};f.styles=p`
     .placeholder-view {
       max-width: 800px;
       margin: var(--spacing-xxl) auto;
@@ -263,20 +263,111 @@ import{i as p,x as a,a as h,r as m,n as f,d as x,_ as w,h as k,b as $}from"./sta
     a:hover {
       text-decoration: underline;
     }
-  `;let l=u;y([f()],l.prototype,"type");y([f({attribute:"item-id"})],l.prototype,"itemId");const z=[{path:"/app/destination/:id",view:e=>a`
-      <placeholder-view type="destination" item-id=${e.id}></placeholder-view>
-    `},{path:"/app/flight/:id",view:e=>a`
-      <placeholder-view type="flight" item-id=${e.id}></placeholder-view>
-    `},{path:"/app/traveler/:id",view:e=>a`
-      <placeholder-view type="traveler" item-id=${e.id}></placeholder-view>
-    `},{path:"/app/airline/:id",view:e=>a`
-      <placeholder-view type="airline" item-id=${e.id}></placeholder-view>
-    `},{path:"/app/accommodation/:id",view:e=>a`
-      <placeholder-view type="accommodation" item-id=${e.id}></placeholder-view>
-    `},{path:"/app/activity/:id",view:e=>a`
-      <placeholder-view type="activity" item-id=${e.id}></placeholder-view>
-    `},{path:"/app/finance/:id",view:e=>a`
-      <placeholder-view type="finance" item-id=${e.id}></placeholder-view>
-    `},{path:"/app",view:()=>a`
+  `;let d=f;k([u()],d.prototype,"type");k([u({attribute:"item-id"})],d.prototype,"itemId");var S=Object.defineProperty,_=(a,e,r,n)=>{for(var i=void 0,s=a.length-1,o;s>=0;s--)(o=a[s])&&(i=o(e,r,i)||i);return i&&S(e,r,i),i};const b=class b extends ${constructor(){super("blazing:model")}get profile(){var e;return(e=this.model)==null?void 0:e.profile}connectedCallback(){super.connectedCallback(),this.userid&&this.requestProfile()}attributeChangedCallback(e,r,n){super.attributeChangedCallback(e,r,n),e==="user-id"&&r!==n&&n&&this.requestProfile()}requestProfile(){this.userid&&this.dispatchMessage(["profile/request",{userid:this.userid}])}render(){const e=this.profile;return this.userid?!e||e.userid!==this.userid?t`
+        <main class="traveler-view">
+          <p>Loading profile for ${this.userid}...</p>
+        </main>
+      `:t`
+      <main class="traveler-view">
+        <header class="profile-header">
+          ${e.avatar?t`<img src=${e.avatar} alt=${e.name} class="avatar" />`:t`<div class="avatar-placeholder">${e.name.charAt(0)}</div>`}
+          <div class="profile-info">
+            <h1>${e.name}</h1>
+            ${e.nickname?t`<p class="nickname">${e.nickname}</p>`:""}
+            <p class="home">📍 ${e.home}</p>
+          </div>
+        </header>
+
+        <section class="profile-details">
+          <h2>Airports</h2>
+          ${e.airports&&e.airports.length>0?t`
+                <ul class="airports-list">
+                  ${e.airports.map(r=>t`<li>${r}</li>`)}
+                </ul>
+              `:t`<p>No airports listed</p>`}
+        </section>
+      </main>
+    `:t`
+        <main class="traveler-view">
+          <p>No user ID provided</p>
+        </main>
+      `}};b.styles=p`
+    .traveler-view {
+      max-width: 800px;
+      margin: var(--spacing-xxl) auto;
+      padding: var(--spacing-xl);
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xl);
+      margin-bottom: var(--spacing-xxl);
+      padding-bottom: var(--spacing-xl);
+      border-bottom: 2px solid var(--color-border, #e5e7eb);
+    }
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--color-primary, #21969a);
+    }
+    .avatar-placeholder {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--color-primary, #21969a);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: bold;
+      border: 4px solid var(--color-primary-dark, #17696c);
+    }
+    .profile-info h1 {
+      margin: 0 0 var(--spacing-sm) 0;
+      font-size: var(--font-size-3xl, 1.875rem);
+    }
+    .nickname {
+      font-size: var(--font-size-xl, 1.25rem);
+      color: var(--color-text-muted);
+      margin: 0 0 var(--spacing-sm) 0;
+    }
+    .home {
+      margin: 0;
+      color: var(--color-text-muted);
+    }
+    .profile-details h2 {
+      margin-bottom: var(--spacing-md);
+    }
+    .airports-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-md);
+    }
+    .airports-list li {
+      background: var(--color-background-section, #f9fafb);
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--border-radius-md, 8px);
+      border: 1px solid var(--color-border, #e5e7eb);
+    }
+  `;let c=b;_([u({attribute:"user-id"})],c.prototype,"userid");const I={};function N(a,e){return fetch(`/api/travelers/${a.userid}`,{headers:y.headers(e)}).then(r=>{if(r.status===200)return r.json();throw new Error("No Response from server")}).then(r=>{if(r)return r;throw new Error("No JSON in response from server")})}function D(a,e,r){var n;switch(a[0]){case"profile/request":{const{userid:i}=a[1];return((n=e.profile)==null?void 0:n.userid)===i?e:[e,N(a[1],r).then(s=>["profile/load",{userid:i,profile:s}]).catch(s=>(console.error("Failed to load profile:",s),["profile/load",{userid:i,profile:void 0}]))]}case"profile/load":{const{profile:i}=a[1];return{...e,profile:i}}case"profile/save":{const{profile:i}=a[1];return{...e,profile:i}}default:{const i=a[0];throw new Error(`Unhandled Store message "${i}"`)}}}const q=[{path:"/app/destination/:id",view:a=>t`
+      <placeholder-view type="destination" item-id=${a.id}></placeholder-view>
+    `},{path:"/app/flight/:id",view:a=>t`
+      <placeholder-view type="flight" item-id=${a.id}></placeholder-view>
+    `},{path:"/app/traveler/:id",view:a=>t`
+      <traveler-view user-id=${a.id}></traveler-view>
+    `},{path:"/app/airline/:id",view:a=>t`
+      <placeholder-view type="airline" item-id=${a.id}></placeholder-view>
+    `},{path:"/app/accommodation/:id",view:a=>t`
+      <placeholder-view type="accommodation" item-id=${a.id}></placeholder-view>
+    `},{path:"/app/activity/:id",view:a=>t`
+      <placeholder-view type="activity" item-id=${a.id}></placeholder-view>
+    `},{path:"/app/finance/:id",view:a=>t`
+      <placeholder-view type="finance" item-id=${a.id}></placeholder-view>
+    `},{path:"/app",view:()=>t`
       <home-view></home-view>
-    `},{path:"/",redirect:"/app"}];x({"mu-auth":$.Provider,"mu-history":k.Provider,"blazing-header":o,"home-view":c,"placeholder-view":l,"mu-switch":class extends w.Element{constructor(){super(z,"blazing:history","blazing:auth")}}});
+    `},{path:"/",redirect:"/app"}];z({"mu-auth":y.Provider,"mu-history":M.Provider,"mu-store":class extends C.Provider{constructor(){super(D,I,"blazing:auth")}},"blazing-header":l,"home-view":h,"traveler-view":c,"placeholder-view":d,"mu-switch":class extends A.Element{constructor(){super(q,"blazing:history","blazing:auth")}}});
