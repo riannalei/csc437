@@ -22,6 +22,8 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var import_express = __toESM(require("express"));
+var import_promises = __toESM(require("node:fs/promises"));
+var import_path = __toESM(require("path"));
 var import_mongo = require("./services/mongo");
 var import_auth = __toESM(require("./routes/auth"));
 var import_travelers = __toESM(require("./routes/travelers"));
@@ -35,6 +37,12 @@ app.get("/hello", (req, res) => {
 });
 app.use("/auth", import_auth.default);
 app.use("/api/travelers", import_auth.authenticateUser, import_travelers.default);
+app.use("/app", (req, res) => {
+  const indexHtml = import_path.default.resolve(staticDir, "index.html");
+  import_promises.default.readFile(indexHtml, { encoding: "utf8" }).then(
+    (html) => res.send(html)
+  );
+});
 (0, import_mongo.connect)("blazing");
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

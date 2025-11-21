@@ -1,0 +1,129 @@
+/* Design Tokens - CSS Custom Properties */
+
+:root {
+  /* ===== Color Palette ===== */
+  
+  /* Primary Colors */
+  --color-primary: rgb(33 150 154);       /* Teal - main brand color */
+  --color-primary-light: rgb(76 187 191); /* Light teal */
+  --color-primary-dark: rgb(23 105 108);  /* Dark teal */
+  
+  /* Accent Colors */
+  --color-accent: rgb(255 107 85);        /* Coral - attention/CTAs */
+  --color-accent-light: rgb(255 142 120); /* Light coral */
+  
+  /* Neutral Colors */
+  --color-neutral-100: rgb(250 249 246);  /* Very light cream */
+  --color-neutral-200: rgb(238 237 231);  /* Light cream */
+  --color-neutral-300: rgb(204 204 196);  /* Medium gray */
+  --color-neutral-700: rgb(71 71 71);     /* Dark gray */
+  --color-neutral-900: rgb(34 34 34);     /* Almost black */
+  
+  /* Semantic Colors - Text */
+  --color-text: var(--color-neutral-900);
+  --color-text-muted: var(--color-neutral-700);
+  --color-text-inverted: var(--color-neutral-100);
+  
+  /* Semantic Colors - Backgrounds */
+  --color-background-page: var(--color-neutral-100);
+  --color-background-header: var(--color-primary);
+  --color-background-section: rgb(255 255 255);
+  --color-background-footer: var(--color-neutral-200);
+  
+  /* Semantic Colors - Interactive */
+  --color-link: var(--color-primary-dark);
+  --color-link-hover: var(--color-accent);
+  --color-link-inverted: var(--color-neutral-100);
+  --color-link-inverted-hover: var(--color-accent-light);
+  
+  /* Semantic Colors - Borders */
+  --color-border: var(--color-neutral-300);
+  --color-border-accent: var(--color-primary-light);
+  
+  /* ===== Typography ===== */
+  
+  /* Font Families */
+  --font-family-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-family-heading: "Playfair Display", Georgia, "Times New Roman", Times, serif;
+  
+  /* Font Sizes */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  
+  /* Line Heights */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.8;
+  
+  /* ===== Spacing ===== */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+  
+  /* ===== Border ===== */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-width: 1px;
+  --border-width-thick: 2px;
+  
+  /* ===== Layout ===== */
+  --max-width-content: 1200px;
+  --max-width-wide: 1400px;
+  
+  /* Grid Columns */
+  --grid-columns-mobile: 4;
+  --grid-columns-tablet: 8;
+  --grid-columns-desktop: 12;
+}
+
+/* ===== Dark Mode Overrides ===== */
+
+body.dark-mode {
+  /* Invert background and text colors */
+  --color-background-page: rgb(34 34 34);        /* Dark background */
+  --color-text: rgb(250 249 246);               /* Light text */
+  --color-text-muted: rgb(204 204 196);         /* Muted light text */
+  
+  /* Invert section backgrounds */
+  --color-background-section: rgb(71 71 71);    /* Dark gray sections */
+  --color-background-footer: rgb(51 51 51);     /* Darker footer */
+  
+  /* Adjust borders for dark mode */
+  --color-border: rgb(102 102 102);             /* Lighter borders for visibility */
+  --color-border-accent: rgb(76 187 191);       /* Keep accent borders visible */
+  
+  /* Keep header colors but adjust for contrast */
+  --color-background-header: var(--color-primary-dark);
+  
+  /* Adjust link colors for dark mode */
+  --color-link: rgb(76 187 191);                /* Light teal for links */
+  --color-link-hover: var(--color-accent-light); /* Light coral for hover */
+  
+  /* Keep accent colors but ensure they work on dark backgrounds */
+  --color-accent: rgb(255 142 120);             /* Slightly lighter coral */
+}
+
+/* Temporary debug style to make dark mode very obvious */
+body.dark-mode {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+body.dark-mode * {
+  background-color: #333333 !important;
+  color: #ffffff !important;
+}
+

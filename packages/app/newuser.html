@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Register — Travel Planner</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/reset.css" />
+  <link rel="stylesheet" href="/styles/tokens.css" />
+  <link rel="stylesheet" href="/styles/page.css" />
+  <script type="module">
+    import { define, Auth } from "@calpoly/mustang";
+    import { LoginFormElement } from "./src/auth/login-form.js";
+
+    define({
+      "mu-auth": Auth.Provider,
+      "login-form": LoginFormElement
+    });
+  </script>
+</head>
+<body class="page auth-page">
+  <mu-auth>
+    <div class="auth-container">
+      <header class="auth-header">
+        <h1>Travel Planner</h1>
+        <p>Create your account to start planning your next adventure.</p>
+      </header>
+      <main class="auth-card">
+        <login-form api="/auth/register" redirect="/login.html">
+          <label>
+            <span>Username</span>
+            <input name="username" autocomplete="username" required placeholder="Choose a username" />
+          </label>
+          <label>
+            <span>Password</span>
+            <input type="password" name="password" autocomplete="new-password" required placeholder="Create a password" />
+          </label>
+        </login-form>
+        <p class="auth-footer">
+          Already have an account? <a href="/login.html">Sign in here</a>
+        </p>
+      </main>
+    </div>
+  </mu-auth>
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--color-primary-light, #76bbbf) 0%, var(--color-primary, #21969a) 100%);
+      padding: var(--spacing-lg);
+    }
+    .auth-container {
+      width: 100%;
+      max-width: 440px;
+    }
+    .auth-header {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+      color: white;
+    }
+    .auth-header h1 {
+      color: white;
+      margin-bottom: var(--spacing-sm);
+    }
+    .auth-header p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: var(--font-size-base);
+    }
+    .auth-card {
+      background: white;
+      border-radius: 16px;
+      padding: var(--spacing-xxl, 3rem);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    }
+    .auth-footer {
+      text-align: center;
+      margin-top: var(--spacing-lg);
+      color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
+    }
+    .auth-footer a {
+      color: var(--color-primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .auth-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</body>
+</html>
+

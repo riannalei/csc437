@@ -1,0 +1,19 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx vite",
+    "build": "npx tsc && npx vite build",
+    "start": "http-server dist -p 3000"
+  },
+  "dependencies": {
+    "@calpoly/mustang": "^1.0.17",
+    "lit": "^3.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^6.4.1"
+  }
+}
