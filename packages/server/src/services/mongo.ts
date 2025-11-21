@@ -47,7 +47,7 @@ export function connect(dbname: string) {
       connectTimeoutMS: 30000,
     };
     
-    mongoose
+  mongoose
       .connect(uri, options)
       .then(() => {
         console.log("MongoDB connection established");
