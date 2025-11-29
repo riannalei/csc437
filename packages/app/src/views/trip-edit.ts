@@ -50,23 +50,6 @@ export class TripEditElement extends LitElement {
     this.trip = { ...this.trip, [field]: target.value };
   }
 
-  private updateActivities(e: Event) {
-    const target = e.target as HTMLTextAreaElement;
-    const value = target.value || "";
-    const activities = value
-      .split("\n")
-      .map((line) => line.trim())
-      .filter((line) => line.length > 0);
-    this.trip = { ...this.trip, activities };
-  }
-
-  private activitiesText(): string {
-    if (Array.isArray(this.trip.activities)) {
-      return this.trip.activities.join("\n");
-    }
-    return "";
-  }
-
   private ensureItinerary() {
     if (!Array.isArray(this.trip.itinerary)) {
       this.trip = { ...this.trip, itinerary: [] };
