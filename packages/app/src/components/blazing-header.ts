@@ -6,33 +6,133 @@ export class HeaderElement extends LitElement {
   authenticated = false;
 
   @state()
+  username?: string;
+
+  @state()
   darkMode = false;
 
   connectedCallback() {
     super.connectedCallback();
     // Listen for auth status changes
     document.addEventListener("auth:message", this.handleAuthMessage);
+    window.addEventListener("storage", this.handleStorageChange);
+    document.addEventListener("visibilitychange", this.handleVisibilityChange);
+    // Check immediately and also after a short delay to catch token storage
     this.updateAuthStatus();
+    setTimeout(() => this.updateAuthStatus(), 100);
+    setTimeout(() => this.updateAuthStatus(), 500);
     this.checkDarkMode();
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     document.removeEventListener("auth:message", this.handleAuthMessage);
+    window.removeEventListener("storage", this.handleStorageChange);
+    document.removeEventListener("visibilitychange", this.handleVisibilityChange);
   }
+
+  handleVisibilityChange = () => {
+    if (!document.hidden) {
+      this.updateAuthStatus();
+    }
+  };
+
+  handleStorageChange = (e: StorageEvent) => {
+    if (e.key === "blazing:auth") {
+      this.updateAuthStatus();
+    }
+  };
 
   handleAuthMessage = (e: Event) => {
     const customEvent = e as CustomEvent;
-    const [action] = customEvent.detail;
-    if (action === "auth/signin" || action === "auth/signout") {
+    const [action, payload] = customEvent.detail;
+    console.log("[Header] Auth message received:", action, payload);
+    if (action === "auth/signin") {
+      // If we have the token in the payload, use it directly
+      if (payload && payload.token) {
+        console.log("[Header] Got token from payload, storing and updating");
+        // Store it ourselves if mu-auth hasn't yet
+        localStorage.setItem("blazing:auth", payload.token);
+        this.updateAuthStatus();
+      }
+      // Also check localStorage multiple times to catch when mu-auth stores it
+      setTimeout(() => {
+        console.log("[Header] Checking auth after signin (50ms)");
+        this.updateAuthStatus();
+      }, 50);
+      setTimeout(() => {
+        console.log("[Header] Checking auth after signin (200ms)");
+        this.updateAuthStatus();
+      }, 200);
+      setTimeout(() => {
+        console.log("[Header] Checking auth after signin (500ms)");
+        this.updateAuthStatus();
+      }, 500);
+    } else if (action === "auth/signout") {
       this.updateAuthStatus();
     }
   };
 
   updateAuthStatus() {
-    // Check if user is authenticated by looking for token
-    const token = localStorage.getItem("blazing:auth");
+    // Check all localStorage keys to find the auth token
+    // mu-auth might store it with a different key
+    let token: string | null = null;
+    
+    // Try different possible keys
+    const possibleKeys = [
+      "blazing:auth",
+      "blazing:auth:token",
+      "auth:token",
+      "token"
+    ];
+    
+    // First, log all localStorage keys for debugging
+    console.log("[Header] All localStorage keys:", Object.keys(localStorage));
+    
+    for (const key of possibleKeys) {
+      const value = localStorage.getItem(key);
+      if (value && value.startsWith("eyJ")) { // JWT tokens start with "eyJ"
+        token = value;
+        console.log("[Header] Found token in key:", key);
+        break;
+      }
+    }
+    
+    // If not found, check all keys for JWT-like values
+    if (!token) {
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && (key.includes("auth") || key.includes("blazing"))) {
+          const value = localStorage.getItem(key);
+          if (value && value.startsWith("eyJ")) {
+            token = value;
+            console.log("[Header] Found token in key:", key);
+            break;
+          }
+        }
+      }
+    }
+    
+    console.log("[Header] Token found:", token ? "YES" : "NO");
     this.authenticated = !!token;
+    
+    // Decode JWT to get username
+    if (token) {
+      try {
+        // JWT format: header.payload.signature
+        const payload = token.split('.')[1];
+        const decoded = JSON.parse(atob(payload));
+        console.log("[Header] Decoded payload:", decoded);
+        this.username = decoded.username;
+      } catch (e) {
+        console.error("[Header] Failed to decode token:", e);
+        this.username = undefined;
+      }
+    } else {
+      this.username = undefined;
+    }
+    
+    console.log("[Header] Final state - Authenticated:", this.authenticated, "Username:", this.username);
     this.requestUpdate();
   }
 
@@ -78,7 +178,7 @@ export class HeaderElement extends LitElement {
             <span class="auth-status">
               ${this.authenticated
                 ? html`
-                    <span class="user-greeting">Welcome!</span>
+                    <span class="user-greeting">Hi, ${this.username || "User"}!</span>
                     <button @click=${this.signOut} class="btn-signout">Sign Out</button>
                   `
                 : html`
@@ -145,8 +245,13 @@ export class HeaderElement extends LitElement {
       transform: translateY(-1px);
     }
     .user-greeting {
-      color: rgba(255, 255, 255, 0.9);
-      font-weight: 500;
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 600;
+      font-size: var(--font-size-base, 1rem);
+      padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 1rem);
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: var(--border-radius-md, 8px);
+      backdrop-filter: blur(10px);
     }
     .dark-mode-toggle {
       display: flex;

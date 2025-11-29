@@ -61,8 +61,8 @@ export class TravelerEditElement extends View<Model, Msg> {
     if (typeof formData.airports === "string") {
       formData.airports = formData.airports
         .split(",")
-        .map((a) => a.trim())
-        .filter((a) => a.length > 0);
+        .map((a: string) => a.trim())
+        .filter((a: string) => a.length > 0);
     }
 
     this.dispatchMessage([
@@ -139,7 +139,7 @@ export class TravelerEditElement extends View<Model, Msg> {
               .value=${profile.airports?.join(", ") || ""} />
           </label>
 
-          <button type="submit">Save Profile</button>
+          <button slot="submit" type="submit">Save Profile</button>
         </mu-form>
       </main>
     `;
@@ -147,89 +147,127 @@ export class TravelerEditElement extends View<Model, Msg> {
 
   static styles = css`
     .traveler-edit {
-      max-width: 600px;
-      margin: var(--spacing-xxl) auto;
-      padding: var(--spacing-xl);
+      max-width: 700px;
+      margin: var(--spacing-xxl, 3rem) auto;
+      padding: var(--spacing-xl, 2rem);
     }
 
     .edit-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: var(--spacing-xl);
-      padding-bottom: var(--spacing-lg);
-      border-bottom: 2px solid var(--color-border, #e5e7eb);
+      margin-bottom: var(--spacing-xxl, 3rem);
+      padding-bottom: var(--spacing-lg, 1.5rem);
+      border-bottom: 1px solid var(--color-border, #e5e7eb);
     }
 
     .edit-header h1 {
       margin: 0;
-      font-size: var(--font-size-3xl, 1.875rem);
+      font-size: var(--font-size-4xl, 2.25rem);
+      font-weight: 700;
+      color: var(--color-text, #1f2937);
+      letter-spacing: -0.02em;
     }
 
     .cancel-link {
-      color: var(--color-primary, #21969a);
+      color: var(--color-text-muted, #6b7280);
       text-decoration: none;
-      font-weight: 600;
-      padding: var(--spacing-sm) var(--spacing-md);
+      font-weight: 500;
+      padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 1rem);
       border-radius: var(--border-radius-md, 8px);
-      transition: background-color 0.2s;
+      transition: all 0.2s ease;
+      font-size: var(--font-size-sm, 0.875rem);
     }
 
     .cancel-link:hover {
       background-color: var(--color-background-section, #f9fafb);
+      color: var(--color-text, #1f2937);
     }
 
     mu-form {
       display: block;
+      background: white;
+      padding: var(--spacing-xxl, 3rem);
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
     }
 
     mu-form label {
       display: block;
-      margin-bottom: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl, 2rem);
+    }
+
+    mu-form label:last-of-type {
+      margin-bottom: var(--spacing-lg, 1.5rem);
     }
 
     mu-form label span {
       display: block;
-      margin-bottom: var(--spacing-sm);
+      margin-bottom: var(--spacing-sm, 0.5rem);
       font-weight: 600;
       color: var(--color-text, #1f2937);
+      font-size: var(--font-size-sm, 0.875rem);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
 
     mu-form input {
       width: 100%;
-      padding: var(--spacing-sm) var(--spacing-md);
-      border: 1px solid var(--color-border, #e5e7eb);
+      padding: var(--spacing-md, 1rem) var(--spacing-lg, 1.5rem);
+      border: 2px solid var(--color-border, #e5e7eb);
       border-radius: var(--border-radius-md, 8px);
       font-size: var(--font-size-base, 1rem);
       box-sizing: border-box;
+      transition: all 0.2s ease;
+      background: white;
+      color: var(--color-text, #1f2937);
+    }
+
+    mu-form input:hover {
+      border-color: var(--color-primary-light, #76bbbf);
     }
 
     mu-form input:focus {
       outline: none;
       border-color: var(--color-primary, #21969a);
-      box-shadow: 0 0 0 3px rgba(33, 150, 154, 0.1);
+      box-shadow: 0 0 0 4px rgba(33, 150, 154, 0.1);
+      background: white;
+    }
+
+    mu-form input::placeholder {
+      color: var(--color-text-muted, #9ca3af);
     }
 
     mu-form button[type="submit"] {
       width: 100%;
-      padding: var(--spacing-md) var(--spacing-lg);
-      background: var(--color-primary, #21969a);
+      padding: var(--spacing-md, 1rem) var(--spacing-xl, 2rem);
+      background: linear-gradient(135deg, var(--color-primary, #21969a) 0%, var(--color-primary-dark, #17696c) 100%);
       color: white;
       border: none;
       border-radius: var(--border-radius-md, 8px);
       font-size: var(--font-size-base, 1rem);
       font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.2s;
-      margin-top: var(--spacing-lg);
+      transition: all 0.2s ease;
+      margin-top: var(--spacing-xl, 2rem);
+      box-shadow: 0 4px 6px rgba(33, 150, 154, 0.2);
+      min-height: 48px;
+      letter-spacing: 0.01em;
     }
 
     mu-form button[type="submit"]:hover {
-      background: var(--color-primary-dark, #17696c);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(33, 150, 154, 0.3);
     }
 
     mu-form button[type="submit"]:active {
-      transform: translateY(1px);
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(33, 150, 154, 0.2);
+    }
+
+    mu-form button[type="submit"]:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(33, 150, 154, 0.2), 0 4px 6px rgba(33, 150, 154, 0.2);
     }
   `;
 }

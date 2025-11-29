@@ -11,11 +11,16 @@ import { HomeViewElement } from "./views/home-view";
 import { PlaceholderViewElement } from "./views/placeholder-view";
 import { TravelerEditElement } from "./views/traveler-edit";
 import { TravelerViewElement } from "./views/traveler-view";
+import { DestinationTokyoView } from "./views/destination-tokyo";
 import { Msg } from "./messages";
 import { Model, init } from "./model";
 import update from "./update";
 
 const routes = [
+  {
+    path: "/app/destination/tokyo",
+    view: () => html` <destination-tokyo></destination-tokyo> `
+  },
   {
     path: "/app/destination/:id",
     view: (params: Switch.Params) => html`
@@ -89,6 +94,7 @@ define({
   "traveler-view": TravelerViewElement,
   "traveler-edit": TravelerEditElement,
   "placeholder-view": PlaceholderViewElement,
+  "destination-tokyo": DestinationTokyoView,
   "mu-switch": class AppSwitch extends Switch.Element {
     constructor() {
       super(routes, "blazing:history", "blazing:auth");

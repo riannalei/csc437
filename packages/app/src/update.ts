@@ -72,20 +72,21 @@ export default function update(
       return { ...model, profile };
     }
     case "profile/save": {
-      const { userid, profile } = message[1];
+      const { userid } = message[1];
       const { onSuccess, onFailure } = message[2] || {};
       return [
         model,
         saveProfile(message[1], user)
-          .then((savedProfile) => [
-            "profile/load",
-            { userid, profile: savedProfile }
-          ] as Msg)
-          .then(() => {
+          .then((savedProfile) => {
             if (onSuccess) onSuccess();
+            return [
+              "profile/load",
+              { userid, profile: savedProfile }
+            ] as Msg;
           })
           .catch((error: Error) => {
             if (onFailure) onFailure(error);
+            throw error;
           })
       ];
     }

@@ -76,33 +76,35 @@ export class LoginFormElement extends LitElement {
       }
       label span {
         font-weight: 600;
-        color: var(--color-text, #222);
-        font-size: var(--font-size-sm, 0.875rem);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+        color: var(--color-neutral-700, #4b5563);
+        font-size: var(--font-size-base, 1rem);
+        letter-spacing: -0.01em;
       }
       input {
         padding: var(--spacing-md, 1rem);
-        border: 2px solid var(--color-border, #e5e7eb);
-        border-radius: var(--border-radius-md, 8px);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 999px;
         font-size: var(--font-size-base, 1rem);
-        transition: all 0.2s ease;
-        background-color: white;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        background-color: #f8f7f4;
+      }
+      input::placeholder {
+        color: #9ca3af;
       }
       input:focus {
         outline: none;
         border-color: var(--color-primary, #21969a);
-        box-shadow: 0 0 0 3px rgba(33, 150, 154, 0.1);
+        box-shadow: 0 0 0 4px rgba(33, 150, 154, 0.15);
       }
       input:required:invalid {
         border-color: #fecaca;
       }
       button {
         padding: var(--spacing-md, 1rem) var(--spacing-xl, 2rem);
-        background: linear-gradient(135deg, var(--color-primary, #21969a) 0%, var(--color-primary-dark, #17696c) 100%);
+        background: linear-gradient(135deg, #e0e0dd, #d2d2cd);
         color: white;
         border: none;
-        border-radius: var(--border-radius-md, 8px);
+        border-radius: 999px;
         cursor: pointer;
         font-size: var(--font-size-base, 1rem);
         font-weight: 600;
@@ -112,17 +114,21 @@ export class LoginFormElement extends LitElement {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
       button:disabled {
-        opacity: 0.5;
+        opacity: 1;
         cursor: not-allowed;
-        background: var(--color-neutral-300, #ccc);
-        box-shadow: none;
+        background: linear-gradient(135deg, #e6e4df, #d8d6cf);
+        color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
       }
       button:not(:disabled):hover {
         transform: translateY(-1px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 8px 16px rgba(33, 150, 154, 0.25);
+        background: linear-gradient(135deg, var(--color-primary, #21969a), var(--color-primary-dark, #17696c));
+        color: #fff;
       }
       button:not(:disabled):active {
         transform: translateY(0);
+        box-shadow: 0 4px 8px rgba(33, 150, 154, 0.2);
       }
     `
   ];
