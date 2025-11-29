@@ -3,6 +3,30 @@ import { Traveler } from "server/models";
 import { Msg } from "./messages";
 import { Model } from "./model";
 
+function normalizeTraveler(
+  profile: Traveler | undefined
+): Traveler | undefined {
+  if (!profile) return profile;
+
+  // Ensure airports is always an array of strings for the views
+  let airports: string[] = [];
+  const raw = (profile as any).airports;
+
+  if (Array.isArray(raw)) {
+    airports = raw.map(String);
+  } else if (typeof raw === "string") {
+    airports = raw
+      .split(",")
+      .map((a) => a.trim())
+      .filter((a) => a.length > 0);
+  }
+
+  return {
+    ...profile,
+    airports
+  };
+}
+
 function requestProfile(
   payload: { userid: string },
   user: Auth.User
@@ -15,7 +39,7 @@ function requestProfile(
       throw new Error("No Response from server");
     })
     .then((json: unknown) => {
-      if (json) return json as Traveler;
+      if (json) return normalizeTraveler(json as Traveler) as Traveler;
       throw new Error("No JSON in response from server");
     });
 }
@@ -37,7 +61,7 @@ function saveProfile(
       throw new Error(`Failed to save profile for ${payload.userid}`);
     })
     .then((json: unknown) => {
-      if (json) return json as Traveler;
+      if (json) return normalizeTraveler(json as Traveler) as Traveler;
       throw new Error("No JSON in API response");
     });
 }
@@ -69,7 +93,7 @@ export default function update(
     }
     case "profile/load": {
       const { profile } = message[1];
-      return { ...model, profile };
+      return { ...model, profile: normalizeTraveler(profile) };
     }
     case "profile/save": {
       const { userid } = message[1];

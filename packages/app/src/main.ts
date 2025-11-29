@@ -7,72 +7,34 @@ import {
 } from "@calpoly/mustang";
 import { html } from "lit";
 import { HeaderElement } from "./components/blazing-header";
-import { HomeViewElement } from "./views/home-view";
-import { PlaceholderViewElement } from "./views/placeholder-view";
-import { TravelerEditElement } from "./views/traveler-edit";
-import { TravelerViewElement } from "./views/traveler-view";
-import { DestinationTokyoView } from "./views/destination-tokyo";
+import { TripsViewElement } from "./views/trips-view";
+import { TripViewElement } from "./views/trip-view";
+import { TripEditElement } from "./views/trip-edit";
 import { Msg } from "./messages";
 import { Model, init } from "./model";
 import update from "./update";
 
 const routes = [
   {
-    path: "/app/destination/tokyo",
-    view: () => html` <destination-tokyo></destination-tokyo> `
-  },
-  {
-    path: "/app/destination/:id",
-    view: (params: Switch.Params) => html`
-      <placeholder-view type="destination" item-id=${params.id}></placeholder-view>
-    `
-  },
-  {
-    path: "/app/flight/:id",
-    view: (params: Switch.Params) => html`
-      <placeholder-view type="flight" item-id=${params.id}></placeholder-view>
-    `
-  },
-  {
-    path: "/app/traveler/:id/edit",
-    view: (params: Switch.Params) => html`
-      <traveler-edit user-id=${params.id}></traveler-edit>
-    `
-  },
-  {
-    path: "/app/traveler/:id",
-    view: (params: Switch.Params) => html`
-      <traveler-view user-id=${params.id}></traveler-view>
-    `
-  },
-  {
-    path: "/app/airline/:id",
-    view: (params: Switch.Params) => html`
-      <placeholder-view type="airline" item-id=${params.id}></placeholder-view>
-    `
-  },
-  {
-    path: "/app/accommodation/:id",
-    view: (params: Switch.Params) => html`
-      <placeholder-view type="accommodation" item-id=${params.id}></placeholder-view>
-    `
-  },
-  {
-    path: "/app/activity/:id",
-    view: (params: Switch.Params) => html`
-      <placeholder-view type="activity" item-id=${params.id}></placeholder-view>
-    `
-  },
-  {
-    path: "/app/finance/:id",
-    view: (params: Switch.Params) => html`
-      <placeholder-view type="finance" item-id=${params.id}></placeholder-view>
-    `
-  },
-  {
     path: "/app",
     view: () => html`
-      <home-view></home-view>
+      <trips-view></trips-view>
+    `
+  },
+  {
+    path: "/app/trip/new",
+    view: () => html` <trip-edit></trip-edit> `
+  },
+  {
+    path: "/app/trip/:id/edit",
+    view: (params: Switch.Params) => html`
+      <trip-edit trip-id=${params.id}></trip-edit>
+    `
+  },
+  {
+    path: "/app/trip/:id",
+    view: (params: Switch.Params) => html`
+      <trip-view trip-id=${params.id}></trip-view>
     `
   },
   {
@@ -90,11 +52,9 @@ define({
     }
   },
   "blazing-header": HeaderElement,
-  "home-view": HomeViewElement,
-  "traveler-view": TravelerViewElement,
-  "traveler-edit": TravelerEditElement,
-  "placeholder-view": PlaceholderViewElement,
-  "destination-tokyo": DestinationTokyoView,
+  "trips-view": TripsViewElement,
+  "trip-view": TripViewElement,
+  "trip-edit": TripEditElement,
   "mu-switch": class AppSwitch extends Switch.Element {
     constructor() {
       super(routes, "blazing:history", "blazing:auth");

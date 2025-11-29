@@ -27,6 +27,7 @@ var import_path = __toESM(require("path"));
 var import_mongo = require("./services/mongo");
 var import_auth = __toESM(require("./routes/auth"));
 var import_travelers = __toESM(require("./routes/travelers"));
+var import_trips = __toESM(require("./routes/trips"));
 const app = (0, import_express.default)();
 const port = process.env.PORT || 3e3;
 const staticDir = process.env.STATIC || "public";
@@ -37,6 +38,7 @@ app.get("/hello", (req, res) => {
 });
 app.use("/auth", import_auth.default);
 app.use("/api/travelers", import_auth.authenticateUser, import_travelers.default);
+app.use("/api/trips", import_auth.authenticateUser, import_trips.default);
 app.get("/login.html", (req, res) => {
   const loginHtml = import_path.default.resolve(staticDir, "login.html");
   import_promises.default.readFile(loginHtml, { encoding: "utf8" }).then((html) => res.send(html)).catch(() => res.status(404).send("Login page not found"));

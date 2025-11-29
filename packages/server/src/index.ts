@@ -5,6 +5,7 @@ import path from "path";
 import { connect } from "./services/mongo";
 import auth, { authenticateUser } from "./routes/auth";
 import travelers from "./routes/travelers";
+import trips from "./routes/trips";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -21,6 +22,7 @@ app.get("/hello", (req: Request, res: Response) => {
 
 app.use("/auth", auth);
 app.use("/api/travelers", authenticateUser, travelers);
+app.use("/api/trips", authenticateUser, trips);
 
 // Serve login.html and newuser.html explicitly
 app.get("/login.html", (req: Request, res: Response) => {
