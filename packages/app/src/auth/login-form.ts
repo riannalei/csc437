@@ -101,7 +101,7 @@ export class LoginFormElement extends LitElement {
       }
       button {
         padding: var(--spacing-md, 1rem) var(--spacing-xl, 2rem);
-        background: linear-gradient(135deg, #e0e0dd, #d2d2cd);
+        background: var(--color-primary, #21969a);
         color: white;
         border: none;
         border-radius: 999px;
@@ -114,16 +114,16 @@ export class LoginFormElement extends LitElement {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
       button:disabled {
-        opacity: 1;
+        opacity: 0.6;
         cursor: not-allowed;
-        background: linear-gradient(135deg, #e6e4df, #d8d6cf);
-        color: rgba(255, 255, 255, 0.8);
+        background: var(--color-primary, #21969a);
+        color: white;
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
       }
       button:not(:disabled):hover {
         transform: translateY(-1px);
         box-shadow: 0 8px 16px rgba(33, 150, 154, 0.25);
-        background: linear-gradient(135deg, var(--color-primary, #21969a), var(--color-primary-dark, #17696c));
+        background: var(--color-primary-dark, #17696c);
         color: #fff;
       }
       button:not(:disabled):active {

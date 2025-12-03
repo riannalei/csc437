@@ -144,21 +144,17 @@ export class TripsViewElement extends LitElement {
     .add-trip {
       padding: 0.6rem 1.5rem;
       border-radius: 999px;
-      border: 2px solid var(--color-primary, #21969a);
-      color: var(--color-primary, #21969a);
+      border: none;
+      color: white;
       text-decoration: none;
       font-weight: 600;
-      background: white;
+      background: var(--color-primary, #21969a);
       box-shadow: 0 4px 10px rgba(33, 150, 154, 0.15);
     }
     .add-trip.primary {
-      background: linear-gradient(
-        135deg,
-        var(--color-primary, #21969a),
-        var(--color-primary-dark, #17696c)
-      );
+      background: var(--color-primary, #21969a);
       color: white;
-      border-color: transparent;
+      border: none;
     }
     .trip-list {
       list-style: none;

@@ -193,10 +193,9 @@ export class HeaderElement extends LitElement {
 
   static styles = css`
     .main-header {
-      background: linear-gradient(135deg, var(--color-primary, #21969a) 0%, var(--color-primary-dark, #17696c) 100%);
-      color: white;
-      padding: var(--spacing-xl, 2rem) var(--spacing-lg, 1.5rem);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      background: var(--color-background-page, rgb(250 249 246));
+      color: inherit;
+      padding: var(--spacing-xl, 2rem) var(--spacing-md, 1rem) 0;
     }
     .header-content {
       max-width: 1200px;
@@ -206,14 +205,16 @@ export class HeaderElement extends LitElement {
       align-items: center;
       flex-wrap: wrap;
       gap: var(--spacing-lg);
+      padding-bottom: var(--spacing-xl, 2rem);
+      border-bottom: 4px solid var(--color-border, rgba(0, 0, 0, 0.2));
     }
     .header-title h1 {
-      color: white;
+      color: inherit;
       margin: 0 0 var(--spacing-xs, 0.25rem) 0;
       font-size: var(--font-size-3xl, 1.875rem);
     }
     .header-title p {
-      color: rgba(255, 255, 255, 0.9);
+      color: var(--color-text-muted, #6b7280);
       margin: 0;
       font-size: var(--font-size-base, 1rem);
     }
@@ -229,9 +230,9 @@ export class HeaderElement extends LitElement {
     }
     .btn-signin, .btn-signout {
       padding: var(--spacing-sm, 0.5rem) var(--spacing-lg, 1.5rem);
-      background: rgba(255, 255, 255, 0.2);
+      background: var(--color-primary, #21969a);
       color: white;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      border: none;
       border-radius: var(--border-radius-md, 8px);
       text-decoration: none;
       font-weight: 600;
@@ -240,24 +241,19 @@ export class HeaderElement extends LitElement {
       font-size: var(--font-size-sm, 0.875rem);
     }
     .btn-signin:hover, .btn-signout:hover {
-      background: rgba(255, 255, 255, 0.3);
-      border-color: rgba(255, 255, 255, 0.5);
-      transform: translateY(-1px);
+      background: var(--color-primary-dark, #17696c);
     }
     .user-greeting {
-      color: rgba(255, 255, 255, 0.95);
+      color: inherit;
       font-weight: 600;
       font-size: var(--font-size-base, 1rem);
       padding: var(--spacing-sm, 0.5rem) var(--spacing-md, 1rem);
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: var(--border-radius-md, 8px);
-      backdrop-filter: blur(10px);
     }
     .dark-mode-toggle {
       display: flex;
       align-items: center;
       gap: var(--spacing-sm, 0.5rem);
-      color: rgba(255, 255, 255, 0.9);
+      color: inherit;
       font-size: var(--font-size-sm, 0.875rem);
       cursor: pointer;
     }

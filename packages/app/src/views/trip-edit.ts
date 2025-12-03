@@ -393,11 +393,7 @@ export class TripEditElement extends LitElement {
       padding: 0.9rem 2.2rem;
       border-radius: 999px;
       border: none;
-      background: linear-gradient(
-        135deg,
-        var(--color-primary, #21969a),
-        var(--color-primary-dark, #17696c)
-      );
+      background: var(--color-primary, #21969a);
       color: white;
       font-weight: 600;
       cursor: pointer;
